@@ -1,0 +1,51 @@
+
+arpfile-macs and net-macs files need to be created manually by the user. They should be made like the  sample ones here.
+You need to install arp-scan for this to work. 
+I also have a GUI version of this written in python using TKinter.
+
+FILES:
+
+	arpdiff			: temporary		(created by the script)
+	arpfile 		: temporary		(created by the script)
+	arpfile-macs	: database		(sample)
+	net-macs		: database with device names	(sample)
+	net-app.sh		: our script
+
+
+This is a script that does an arp-scan of your local network and lets you know who is connected to it.
+
+You have to do identify the mac-address(s) of each device and add them to your net-macs and arpfile-macs file.
+
+eg:
+34:59:b6:9d:aa:c4	XboxOne
+38:14:g5:24:gg:81	xbox360
+
+The arpdiff and the arpfile are created by the script and are mostly overwritten. All the other files should be kept. 
+
+To run and make executable you have to open a terminal (ctrl+alt+t) and cd into this folder. Password is required to run the arp scan.
+
+eg:
+andy@andy-laptop ~$ cd my-network
+andy@andy-laptop ~$ chmod u+x net-app.sh
+andy@andy-laptop ~$ sudo ./my-network.sh
+---------------------------------------------------------
+SCRIPT RUNDOWN
+
+1. Firstly host ip,name,device and interface are displayed.
+
+2. Test if arpfile-macs does not exist. If not create it.
+
+3. The function fout is called which finds out if we are scanning
+from a wired or a wireless connection.(IMPORTANT!)
+
+4. Scan results are displayed and the intruder function is called
+
+5. The intruder function compares the mac address(s) from our scan results in arpfilecat with the macs in our arpfile-macs file and displays the macs that are not listed in STRANGER DANGER output. arpfilecat is removed last.
+
+6. Next, the same comparison is done again but displaying the macs that are on our database.
+
+7. To do list is then displayed and if there are any macs that are unknown you are asked if you want to add them to our database-text files.
+
+8. Script cleans up and exits.
+
+9. Script works pretty well but there is room for improvement.
